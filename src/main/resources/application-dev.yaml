@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: craflyServer
+  config:
+    import: key-dev.yaml
+    activate:
+      on-profile: dev
+  datasource:
+    url: ${key.datasource.url}
+    username: ${key.datasource.username}
+    password: ${key.datasource.password}

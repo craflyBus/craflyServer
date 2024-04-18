@@ -1,5 +1,3 @@
-!**/src/main/resources/key-dev.properties
-
 HELP.md
 .gradle
 build/
@@ -37,3 +35,4 @@ out/
 
 ### VS Code ###
 .vscode/
+/src/main/resources/key-dev.yaml

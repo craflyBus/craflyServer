@@ -5,4 +5,4 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
-rootProject.name = 'craflyServer1'
+rootProject.name = 'craflyServer'

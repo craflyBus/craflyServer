@@ -9,7 +9,6 @@ class UserMapper {
     fun toDomain(user: UserEntity): User {
         return User(
             user.code,
-            user.authType,
             user.nickname,
             user.telephone,
             user.postCode,
@@ -25,7 +24,6 @@ class UserMapper {
     fun toEntity(user: User): UserEntity {
         return UserEntity(
             user.code,
-            user.authType,
             user.nickname,
             user.telephone,
             user.postCode,

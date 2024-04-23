@@ -4,7 +4,6 @@ import java.time.LocalDateTime
 
 data class User (
         val code: String,
-        val authType: String,
         val nickname: String,
         val telephone: String,
         val postCode: String?,

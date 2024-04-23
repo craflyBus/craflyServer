@@ -7,19 +7,12 @@ import jakarta.persistence.Table
 
 @Table(name="auth")
 @Entity
-internal class AuthEntity {
+data class AuthEntity(
     @Id
-    var code: String = ""
-    var id: String = ""
-    var password: String = ""
-
-    constructor()
-    constructor(auth: Auth) {
-        code = auth.code
-        id = auth.id
-        password = auth.password
-    }
-
+    val code: String,
+    val id: String,
+    val password: String
+) {
     fun mapToAuth() = Auth(
         code = code,
         id = id,

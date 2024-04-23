@@ -7,19 +7,14 @@ import jakarta.persistence.Table
 
 @Table(name="kakao_auth")
 @Entity
-internal class KakaoAuthEntity {
+data class KakaoAuthEntity (
     @Id
-    var code: String = ""
-    var id: String = ""
-
-    constructor()
-    constructor(kakaoAuth: KakaoAuth) {
-        code = kakaoAuth.code
-        id = kakaoAuth.id
-    }
+    val code: String,
+    val id: String
+) {
 
     fun mapToKakaoAuth() = KakaoAuth(
-            code = code,
-            id = id,
+        code = code,
+        id = id,
     )
 }

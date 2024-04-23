@@ -5,14 +5,12 @@ import com.crafly.craflyserver.user.application.port.`in`.RegisterUserUseCase
 import com.crafly.craflyserver.user.application.port.out.ManipulateUserPort
 import com.crafly.craflyserver.user.domain.user.UserAuth
 import com.crafly.craflyserver.util.annotation.UseCase
-import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 @Transactional
 @UseCase
-@Service
-internal class RegisterUserService (
-        private val manipulateUserPort: ManipulateUserPort,
+class RegisterUserUseCaseImpl (
+    private val manipulateUserPort: ManipulateUserPort,
 ): RegisterUserUseCase {
     override fun registerUser(registerUserCommand: RegisterUserCommand) {
         val user = UserAuth(

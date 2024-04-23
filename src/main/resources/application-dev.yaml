@@ -1,3 +1,6 @@
+server:
+  port: 8080
+
 spring:
   application:
     name: craflyServer
@@ -9,3 +12,37 @@ spring:
     url: ${key.datasource.url}
     username: ${key.datasource.username}
     password: ${key.datasource.password}
+
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true
+        hbm2ddl:
+          auto: update
+
+springdoc:
+  default-consumes-media-type: application/json
+  default-produces-media-type: application/json
+  swagger-ui:
+    operations-sorter: alpha
+    tags-sorter: alpha
+    path: /
+    disable-swagger-default-url: true
+    doc-expansion: none
+    syntax-highlight:
+      theme: nord
+  paths-to-match:
+    - /v1/**
+
+logging:
+  #  file:
+  #    name: logs/demo-all-in-one.log
+  exception-conversion-word: '%wEx'
+  pattern:
+    console: '%d{yyyy-MM-dd HH:mm:ss.SSS} %clr(${LOG_LEVEL_PATTERN:%-5p}){green} %clr([%22thread]){magenta} %clr(%-40.40logger{39}){cyan} %clr(: %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}){faint}'
+  level:
+    web: debug
+    org:
+      springframework:
+        web:
+          servlet: debug

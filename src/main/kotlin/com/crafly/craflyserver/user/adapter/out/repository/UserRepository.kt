@@ -6,8 +6,7 @@ import org.springframework.data.jpa.repository.Query
 import org.springframework.data.repository.query.Param
 import org.springframework.stereotype.Repository
 
-@Repository
-internal interface UserRepository : JpaRepository<UserEntity, String> {
+interface UserRepository : JpaRepository<UserEntity, String> {
     @Query("SELECT authType, nickname, telephone, postCode, " +
             "address, addressDetail, type " +
             "FROM UserEntity " +

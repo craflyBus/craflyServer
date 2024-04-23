@@ -1,12 +1,13 @@
 package com.crafly.craflyserver.user.adapter.`in`;
 
-import com.crafly.craflyserver.user.application.port.`in`.ReadUserQuery
+import com.crafly.craflyserver.user.application.port.`in`.RegisterUserCommand
 import com.crafly.craflyserver.user.application.port.`in`.RegisterUserUseCase
 import com.crafly.craflyserver.util.annotation.WebAdapter
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.web.bind.annotation.PatchMapping
 import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
 
 @Tag(name = "User Manipulate API", description = "사용자 조작(생성, 변경, 삭제 등)")
 @WebAdapter("/v1/user")
@@ -15,8 +16,8 @@ class ManipulateUserController (
 ) {
     @Operation(summary = "사용자 생성")
     @PostMapping("/register")
-    fun registerUser() = {
-
+    fun registerUser(@RequestBody user: RegisterUserCommand) = run {
+        registerUserUseCase.registerUser(user)
     }
 
     @Operation(summary = "사용자 편집")

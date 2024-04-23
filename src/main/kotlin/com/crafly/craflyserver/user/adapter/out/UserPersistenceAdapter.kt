@@ -14,7 +14,9 @@ import com.crafly.craflyserver.user.application.port.out.ReadUserPort
 import com.crafly.craflyserver.user.domain.user.User
 import com.crafly.craflyserver.user.domain.user.UserAuth
 import com.crafly.craflyserver.util.annotation.PersistenceAdapter
+import com.crafly.craflyserver.util.model.MissingException
 import com.crafly.craflyserver.util.model.NotIncludeException
+import java.lang.RuntimeException
 
 @PersistenceAdapter
 class UserPersistenceAdapter (
@@ -38,6 +40,9 @@ class UserPersistenceAdapter (
     }
 
     override fun loadUserByCode(code: String): User {
-        return userRepository.findByCode(code).mapToUser();
+        val user: UserEntity = userRepository.findByCode(code)
+            ?: throw MissingException("user not found")
+
+        return user.mapToUser()
     }
 }

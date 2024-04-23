@@ -12,7 +12,6 @@ import java.time.LocalDateTime
 data class UserEntity(
     @Id
     val code: String,
-    val authType: String,
     val nickname: String ,
     val telephone: String,
     val postCode: String?,
@@ -28,7 +27,6 @@ data class UserEntity(
 
     fun mapToUser() = User(
         code = code,
-        authType = authType,
         nickname = nickname,
         telephone = telephone,
         postCode = postCode,

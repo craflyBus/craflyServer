@@ -1,6 +1,6 @@
 package com.crafly.craflyserver.user.adapter.`in`;
 
-import com.crafly.craflyserver.user.application.port.`in`.RegisterUserCommand
+import com.crafly.craflyserver.user.application.port.`in`.parameter.register.RegisterUserCommand
 import com.crafly.craflyserver.user.application.port.`in`.RegisterUserUseCase
 import com.crafly.craflyserver.util.annotation.WebAdapter
 import io.swagger.v3.oas.annotations.Operation

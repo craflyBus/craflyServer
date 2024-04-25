@@ -6,8 +6,6 @@ spring:
     name: craflyServer
   config:
     import: key.yaml
-    activate:
-      on-profile: dev
   datasource:
     url: ${key.datasource.url}
     username: ${key.datasource.username}

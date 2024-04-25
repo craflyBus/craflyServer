@@ -1,0 +1,24 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: craflyServer
+  config:
+    import: key.yaml
+  datasource:
+    url: ${key.datasource.url}
+    username: ${key.datasource.username}
+    password: ${key.datasource.password}
+
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true
+        hbm2ddl:
+          auto: update
+    show-sql: true
+
+springdoc:
+  paths-to-match:
+    - /v1/**

@@ -1,0 +1,5 @@
+key:
+  datasource:
+    url: jdbc:mysql://crafly.cxuauos0yy9z.ap-northeast-2.rds.amazonaws.com:3306/crafly-dev?useSSL=false&useUnicode=true&characterEncoding=utf8&allowPublicKeyRetrieval=true
+    username: master
+    password: gur061201

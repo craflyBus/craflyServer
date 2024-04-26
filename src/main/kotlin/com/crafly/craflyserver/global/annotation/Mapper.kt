@@ -1,4 +1,4 @@
-package com.crafly.craflyserver.util.annotation
+package com.crafly.craflyserver.global.annotation
 
 import org.springframework.stereotype.Component
 
@@ -6,4 +6,6 @@ import org.springframework.stereotype.Component
 @Retention(AnnotationRetention.RUNTIME)
 @MustBeDocumented
 @Component
-annotation class PersistenceAdapter()
+annotation class Mapper(
+)
+

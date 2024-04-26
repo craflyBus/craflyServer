@@ -1,4 +1,4 @@
-package com.crafly.craflyserver.util.annotation
+package com.crafly.craflyserver.global.annotation
 
 import org.springframework.stereotype.Component
 

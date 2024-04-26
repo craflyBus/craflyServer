@@ -1,4 +1,4 @@
-package com.crafly.craflyserver.util.model
+package com.crafly.craflyserver.global.model
 
 import org.springframework.http.HttpStatus
 import java.lang.RuntimeException

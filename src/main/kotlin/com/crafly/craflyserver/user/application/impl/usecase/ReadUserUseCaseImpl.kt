@@ -3,7 +3,7 @@ package com.crafly.craflyserver.user.application.impl.usecase;
 import com.crafly.craflyserver.user.application.port.`in`.ReadUserQuery
 import com.crafly.craflyserver.user.application.port.out.ReadUserPort
 import com.crafly.craflyserver.user.domain.user.User
-import com.crafly.craflyserver.util.annotation.UseCase
+import com.crafly.craflyserver.global.annotation.UseCase
 import org.springframework.transaction.annotation.Transactional
 
 @Transactional
@@ -13,6 +13,6 @@ internal class ReadUserUseCaseImpl (
 ): ReadUserQuery {
 
     override fun getUser(code: String): User {
-        return readUserPort.loadUserByCode(code)
+        return readUserPort.readUserByCode(code)
     }
 }

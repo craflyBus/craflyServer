@@ -12,29 +12,32 @@ import java.time.LocalDateTime
 data class UserEntity(
     @Id
     val code: String,
-    val nickname: String ,
-    val telephone: String,
-    val postCode: String?,
-    val address: String?,
-    val addressDetail: String?,
-    val type: UserType = UserType.U,
-    val activate: UserActivate = UserActivate.N,
+    var nickname: String,
+    var telephone: String,
+    var postCode: String?,
+    var address: String?,
+    var addressDetail: String?,
+    var type: UserType = UserType.U,
+    var activate: UserActivate = UserActivate.N,
     @CreatedDate
     val createTime: LocalDateTime = LocalDateTime.now(),
-    val withdrawTime: LocalDateTime? = null      
+    var withdrawTime: LocalDateTime? = null
 ) {
-    
+    fun update(
+        nickname: String,
+        telephone: String,
+        postCode: String?,
+        address: String?,
+        addressDetail: String?
+    ) {
+        this.nickname = nickname
+        this.telephone = telephone
+        this.postCode = postCode
+        this.address = address
+        this.addressDetail = addressDetail
+    }
 
-    fun mapToUser() = User(
-        code = code,
-        nickname = nickname,
-        telephone = telephone,
-        postCode = postCode,
-        address = address,
-        addressDetail = addressDetail,
-        type = type,
-        activate = activate,
-        createTime = createTime,
-        withdrawTime = withdrawTime
-    )
+    fun withdraw() {
+        this.withdrawTime = LocalDateTime.now()
+    }
 }

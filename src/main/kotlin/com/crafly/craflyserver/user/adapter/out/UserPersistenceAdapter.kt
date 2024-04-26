@@ -12,9 +12,9 @@ import com.crafly.craflyserver.user.application.port.out.ReadUserPort
 import com.crafly.craflyserver.user.domain.user.User
 import com.crafly.craflyserver.user.domain.user.UserAuth
 import com.crafly.craflyserver.global.annotation.PersistenceAdapter
-import com.crafly.craflyserver.global.model.MissingException
-import com.crafly.craflyserver.global.model.NotIncludeException
+import com.crafly.craflyserver.global.model.exception.BackendException
 import com.crafly.craflyserver.user.application.port.`in`.parameter.user.update.UpdateUserCommand
+import org.springframework.http.HttpStatus
 
 @PersistenceAdapter
 class UserPersistenceAdapter (
@@ -33,13 +33,13 @@ class UserPersistenceAdapter (
         } else if (user.kakaoAuth != null) {
             kakaoAuthRepository.save(kakaoAuthMapper.toEntity(user.kakaoAuth))
         } else {
-            throw NotIncludeException("not include auth")
+            throw BackendException(HttpStatus.BAD_REQUEST, "Not Include Auth")
         }
     }
 
     override fun updateUser(code: String, updateCommand: UpdateUserCommand) {
         val user = userRepository.findByCode(code)
-                ?: throw MissingException("user not found")
+                ?: throw BackendException(HttpStatus.NOT_FOUND, "User Not Found")
 
         user.update(
             updateCommand.nickname,
@@ -52,7 +52,7 @@ class UserPersistenceAdapter (
 
     override fun readUserByCode(code: String): User {
         val user: UserEntity = userRepository.findByCode(code)
-            ?: throw MissingException("user not found")
+            ?: throw BackendException(HttpStatus.NOT_FOUND, "User Not Found")
 
         return userMapper.toDomain(user)
     }

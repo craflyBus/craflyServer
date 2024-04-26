@@ -2,7 +2,7 @@ package com.crafly.craflyserver.user.adapter.`in`;
 
 import com.crafly.craflyserver.user.application.port.`in`.ReadUserQuery
 import com.crafly.craflyserver.user.domain.user.User
-import com.crafly.craflyserver.util.annotation.WebAdapter
+import com.crafly.craflyserver.global.annotation.WebAdapter
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.web.bind.annotation.GetMapping

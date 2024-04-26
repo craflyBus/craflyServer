@@ -1,7 +1,5 @@
 package com.crafly.craflyserver.user.adapter.out;
 
-import com.crafly.craflyserver.user.adapter.out.entity.AuthEntity
-import com.crafly.craflyserver.user.adapter.out.entity.KakaoAuthEntity
 import com.crafly.craflyserver.user.adapter.out.entity.UserEntity
 import com.crafly.craflyserver.user.adapter.out.mapper.AuthMapper
 import com.crafly.craflyserver.user.adapter.out.mapper.KakaoAuthMapper
@@ -13,10 +11,10 @@ import com.crafly.craflyserver.user.application.port.out.ManipulateUserPort
 import com.crafly.craflyserver.user.application.port.out.ReadUserPort
 import com.crafly.craflyserver.user.domain.user.User
 import com.crafly.craflyserver.user.domain.user.UserAuth
-import com.crafly.craflyserver.util.annotation.PersistenceAdapter
-import com.crafly.craflyserver.util.model.MissingException
-import com.crafly.craflyserver.util.model.NotIncludeException
-import java.lang.RuntimeException
+import com.crafly.craflyserver.global.annotation.PersistenceAdapter
+import com.crafly.craflyserver.global.model.MissingException
+import com.crafly.craflyserver.global.model.NotIncludeException
+import com.crafly.craflyserver.user.application.port.`in`.parameter.user.update.UpdateUserCommand
 
 @PersistenceAdapter
 class UserPersistenceAdapter (
@@ -39,10 +37,23 @@ class UserPersistenceAdapter (
         }
     }
 
-    override fun loadUserByCode(code: String): User {
+    override fun updateUser(code: String, updateCommand: UpdateUserCommand) {
+        val user = userRepository.findByCode(code)
+                ?: throw MissingException("user not found")
+
+        user.update(
+            updateCommand.nickname,
+            updateCommand.telephone,
+            updateCommand.postCode,
+            updateCommand.address,
+            updateCommand.addressDetail,
+        )
+    }
+
+    override fun readUserByCode(code: String): User {
         val user: UserEntity = userRepository.findByCode(code)
             ?: throw MissingException("user not found")
 
-        return user.mapToUser()
+        return userMapper.toDomain(user)
     }
 }

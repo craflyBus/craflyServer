@@ -1,7 +1,7 @@
-package com.crafly.craflyserver.util.generator;
+package com.crafly.craflyserver.global.util;
 
 import com.crafly.craflyserver.user.adapter.out.repository.UserRepository
-import com.crafly.craflyserver.util.annotation.Util
+import com.crafly.craflyserver.global.annotation.Util
 
 @Util
 class GeneratorCode (

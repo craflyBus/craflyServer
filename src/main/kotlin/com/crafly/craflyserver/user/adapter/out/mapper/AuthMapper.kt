@@ -1,10 +1,8 @@
 package com.crafly.craflyserver.user.adapter.out.mapper
 
 import com.crafly.craflyserver.user.adapter.out.entity.AuthEntity
-import com.crafly.craflyserver.user.adapter.out.entity.UserEntity
-import com.crafly.craflyserver.user.domain.user.User
 import com.crafly.craflyserver.user.domain.user.auth.Auth
-import com.crafly.craflyserver.util.annotation.Mapper
+import com.crafly.craflyserver.global.annotation.Mapper
 
 @Mapper
 class AuthMapper {

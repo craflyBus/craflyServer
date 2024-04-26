@@ -5,7 +5,7 @@ spring:
   application:
     name: craflyServer
   config:
-    import: key.yaml
+    import: /environment/key.yaml
   datasource:
     url: ${key.datasource.url}
     username: ${key.datasource.username}

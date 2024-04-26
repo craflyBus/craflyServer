@@ -1,7 +1,7 @@
 package com.crafly.craflyserver.user.application.port.out;
 
 import com.crafly.craflyserver.user.application.port.`in`.parameter.user.update.UpdateUserCommand
-import com.crafly.craflyserver.user.domain.user.UserAuth
+import com.crafly.craflyserver.user.domain.UserAuth
 
 interface ManipulateUserPort {
     fun registerUser(user: UserAuth)

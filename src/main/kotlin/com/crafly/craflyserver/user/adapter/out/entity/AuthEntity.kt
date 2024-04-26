@@ -1,6 +1,6 @@
 package com.crafly.craflyserver.user.adapter.out.entity
 
-import com.crafly.craflyserver.user.domain.user.auth.Auth
+import com.crafly.craflyserver.user.domain.auth.Auth
 import jakarta.persistence.Entity
 import jakarta.persistence.Id
 import jakarta.persistence.Table

@@ -9,8 +9,8 @@ import com.crafly.craflyserver.user.adapter.out.repository.KakaoAuthRepository
 import com.crafly.craflyserver.user.adapter.out.repository.UserRepository
 import com.crafly.craflyserver.user.application.port.out.ManipulateUserPort
 import com.crafly.craflyserver.user.application.port.out.ReadUserPort
-import com.crafly.craflyserver.user.domain.user.User
-import com.crafly.craflyserver.user.domain.user.UserAuth
+import com.crafly.craflyserver.user.domain.User
+import com.crafly.craflyserver.user.domain.UserAuth
 import com.crafly.craflyserver.global.annotation.PersistenceAdapter
 import com.crafly.craflyserver.global.model.exception.BackendException
 import com.crafly.craflyserver.user.application.port.`in`.parameter.user.update.UpdateUserCommand

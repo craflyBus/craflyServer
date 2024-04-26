@@ -4,11 +4,10 @@ import com.crafly.craflyserver.global.annotation.Injector
 import com.crafly.craflyserver.user.application.port.`in`.parameter.user.register.RegisterAuthCommand
 import com.crafly.craflyserver.user.application.port.`in`.parameter.user.register.RegisterKakaoAuthCommand
 import com.crafly.craflyserver.user.application.port.`in`.parameter.user.register.RegisterUserCommand
-import com.crafly.craflyserver.user.application.port.`in`.parameter.user.update.UpdateUserCommand
-import com.crafly.craflyserver.user.domain.user.User
-import com.crafly.craflyserver.user.domain.user.UserActivate
-import com.crafly.craflyserver.user.domain.user.auth.Auth
-import com.crafly.craflyserver.user.domain.user.auth.KakaoAuth
+import com.crafly.craflyserver.user.domain.User
+import com.crafly.craflyserver.user.domain.UserActivate
+import com.crafly.craflyserver.user.domain.auth.Auth
+import com.crafly.craflyserver.user.domain.auth.KakaoAuth
 import java.time.LocalDateTime
 
 @Injector

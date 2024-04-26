@@ -1,4 +1,4 @@
-package com.crafly.craflyserver.user.domain.user;
+package com.crafly.craflyserver.user.domain;
 
 import java.time.LocalDateTime
 

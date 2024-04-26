@@ -4,7 +4,7 @@ import com.crafly.craflyserver.user.application.port.`in`.parameter.user.registe
 import com.crafly.craflyserver.user.application.port.`in`.ManipulateUserUseCase
 import com.crafly.craflyserver.user.application.port.`in`.parameter.user.update.UpdateUserCommand
 import com.crafly.craflyserver.user.application.port.out.ManipulateUserPort
-import com.crafly.craflyserver.user.domain.user.UserAuth
+import com.crafly.craflyserver.user.domain.UserAuth
 import com.crafly.craflyserver.global.annotation.UseCase
 import com.crafly.craflyserver.global.util.GeneratorCode
 import com.crafly.craflyserver.user.application.impl.usecase.injector.UserInjection

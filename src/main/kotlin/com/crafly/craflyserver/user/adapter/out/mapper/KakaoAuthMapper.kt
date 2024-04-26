@@ -1,7 +1,7 @@
 package com.crafly.craflyserver.user.adapter.out.mapper
 
 import com.crafly.craflyserver.user.adapter.out.entity.KakaoAuthEntity
-import com.crafly.craflyserver.user.domain.user.auth.KakaoAuth
+import com.crafly.craflyserver.user.domain.auth.KakaoAuth
 import com.crafly.craflyserver.global.annotation.Mapper
 
 @Mapper

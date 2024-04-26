@@ -1,6 +1,6 @@
 package com.crafly.craflyserver.user.application.port.`in`.parameter.user.register
 
-import com.crafly.craflyserver.user.domain.user.UserType
+import com.crafly.craflyserver.user.domain.UserType
 
 data class RegisterUserCommand (
         val nickname: String,

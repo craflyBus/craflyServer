@@ -1,7 +1,7 @@
 package com.crafly.craflyserver.user.adapter.out.mapper
 
 import com.crafly.craflyserver.user.adapter.out.entity.AuthEntity
-import com.crafly.craflyserver.user.domain.user.auth.Auth
+import com.crafly.craflyserver.user.domain.auth.Auth
 import com.crafly.craflyserver.global.annotation.Mapper
 
 @Mapper

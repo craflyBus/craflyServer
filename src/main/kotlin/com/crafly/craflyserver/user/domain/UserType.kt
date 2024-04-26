@@ -1,4 +1,4 @@
-package com.crafly.craflyserver.user.domain.user
+package com.crafly.craflyserver.user.domain
 
 enum class UserType(val type: Char) {
         D ('D'),

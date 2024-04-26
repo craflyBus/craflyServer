@@ -21,15 +21,13 @@ class ExceptionFilter(
     ) {
         try {
             filterChain.doFilter(request, response)
-        } catch (e : BackendException) {
+        } catch (e: BackendException) {
             setErrorResponse(e, response)
         } catch (e: Exception) {
             when(e.cause) {
                 is BackendException -> {
                     e.printStackTrace()
                     setErrorResponse(e.cause as BackendException, response)
-                } else -> {
-                    setErrorResponse(InternalServerException, response)
                 }
             }
         }

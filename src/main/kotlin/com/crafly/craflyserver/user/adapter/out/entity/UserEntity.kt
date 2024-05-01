@@ -1,27 +1,28 @@
 package com.crafly.craflyserver.user.adapter.out.entity;
 
-import com.crafly.craflyserver.user.domain.User
 import com.crafly.craflyserver.user.domain.UserActivate
 import com.crafly.craflyserver.user.domain.UserType
 import jakarta.persistence.*
 import org.springframework.data.annotation.CreatedDate
+import org.springframework.security.core.authority.SimpleGrantedAuthority
+import org.springframework.security.core.userdetails.UserDetails
 import java.time.LocalDateTime
 
 @Table(name = "user")
 @Entity
 data class UserEntity(
-        @Id
+    @Id
     val code: String,
-        var nickname: String,
-        var telephone: String,
-        var postCode: String?,
-        var address: String?,
-        var addressDetail: String?,
-        var type: UserType = UserType.U,
-        var activate: UserActivate = UserActivate.N,
-        @CreatedDate
+    var nickname: String,
+    var telephone: String,
+    var postCode: String?,
+    var address: String?,
+    var addressDetail: String?,
+    var type: UserType = UserType.U,
+    var activate: UserActivate = UserActivate.N,
+    @CreatedDate
     val createTime: LocalDateTime = LocalDateTime.now(),
-        var withdrawTime: LocalDateTime? = null
+    var withdrawTime: LocalDateTime? = null
 ) {
     fun update(
         nickname: String,

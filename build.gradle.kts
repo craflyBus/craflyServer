@@ -20,6 +20,11 @@ repositories {
 }
 
 dependencies {
+    implementation("org.springframework.boot:spring-boot-starter-security")
+    compileOnly("org.springframework.security:spring-security-oauth2-client")
+    compileOnly("org.springframework.security:spring-security-oauth2-jose")
+    implementation("io.jsonwebtoken:jjwt:0.9.1")
+
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-web")
     runtimeOnly("com.mysql:mysql-connector-j")

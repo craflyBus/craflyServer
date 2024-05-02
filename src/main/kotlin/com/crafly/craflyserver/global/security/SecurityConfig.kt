@@ -4,6 +4,7 @@ import com.crafly.craflyserver.global.security.filter.ExceptionHandlerFilter
 import com.crafly.craflyserver.global.security.filter.JwtAuthenticationFilter
 import com.crafly.craflyserver.global.security.provider.CookieProvider
 import com.crafly.craflyserver.global.security.provider.JwtTokenProvider
+import com.fasterxml.jackson.databind.ObjectMapper
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -22,6 +23,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 class SecurityConfig(
     private val jwtTokenProvider: JwtTokenProvider,
     private val cookieProvider: CookieProvider,
+    private val objectMapper: ObjectMapper,
     private val authenticationConfiguration: AuthenticationConfiguration,
 ) {
     @Bean
@@ -41,6 +43,7 @@ class SecurityConfig(
                 jwtTokenProvider,
                 cookieProvider,
                 authenticationManager(authenticationConfiguration),
+                objectMapper,
                 loginUrl
             ),
             UsernamePasswordAuthenticationFilter::class.java

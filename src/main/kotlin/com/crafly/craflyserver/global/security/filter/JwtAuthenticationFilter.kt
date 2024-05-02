@@ -32,26 +32,22 @@ class JwtAuthenticationFilter (
     private val jwtTokenProvider: JwtTokenProvider,
     private val cookieProvider: CookieProvider,
     private val authenticationManager: AuthenticationManager,
+    private val objectMapper: ObjectMapper,
 
     private val loginUrl: String
 ): UsernamePasswordAuthenticationFilter() {
     init {
         super.setFilterProcessesUrl(loginUrl)
-
-        println(loginUrl)
     }
 
     override fun attemptAuthentication(
-        request: HttpServletRequest?,
+        request: HttpServletRequest,
         response: HttpServletResponse?
     ): Authentication {
         val authentication: Authentication
 
         try {
-            val credential: LoginRequest = ObjectMapper().readValue(
-                request!!.inputStream,
-                LoginRequest::class.java
-            )
+            val credential = objectMapper.readValue(request.reader, LoginRequest::class.java)
 
             authentication = authenticationManager.authenticate(
                 UsernamePasswordAuthenticationToken(credential.id, credential.password)

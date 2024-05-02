@@ -17,6 +17,7 @@ import jakarta.servlet.http.HttpServletResponse
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
+import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.Authentication
 import org.springframework.security.core.AuthenticationException
@@ -30,6 +31,9 @@ import java.util.stream.Collectors
 class JwtAuthenticationFilter (
     private val jwtTokenProvider: JwtTokenProvider,
     private val cookieProvider: CookieProvider,
+    private val authenticationManager: AuthenticationManager,
+    private val objectMapper: ObjectMapper,
+
     private val loginUrl: String
 ): UsernamePasswordAuthenticationFilter() {
     init {
@@ -37,16 +41,13 @@ class JwtAuthenticationFilter (
     }
 
     override fun attemptAuthentication(
-        request: HttpServletRequest?,
+        request: HttpServletRequest,
         response: HttpServletResponse?
     ): Authentication {
         val authentication: Authentication
 
         try {
-            val credential: LoginRequest = ObjectMapper().readValue(
-                request!!.inputStream,
-                LoginRequest::class.java
-            )
+            val credential = objectMapper.readValue(request.reader, LoginRequest::class.java)
 
             authentication = authenticationManager.authenticate(
                 UsernamePasswordAuthenticationToken(credential.id, credential.password)
@@ -58,15 +59,6 @@ class JwtAuthenticationFilter (
         } catch (e: BackendException) {
             throw CustomAuthenticationException(e.message)
         }
-    }
-    @Throws(IOException::class, ServletException::class)
-    override fun doFilter(request: ServletRequest, response: ServletResponse, chain: FilterChain) {
-        val token: String? = jwtTokenProvider.resolveToken((request as HttpServletRequest))
-        if (token != null && jwtTokenProvider.validateToken(token)) {
-            val authentication = jwtTokenProvider.getAuthentication(token)
-            SecurityContextHolder.getContext().authentication = authentication
-        }
-        chain.doFilter(request, response)
     }
 
     override fun successfulAuthentication(
@@ -125,4 +117,7 @@ class JwtAuthenticationFilter (
         val objectMapper = ObjectMapper()
         response.writer.write(objectMapper.writeValueAsString(exception))
     }
+
+    override fun getAuthenticationManager(): AuthenticationManager =
+        authenticationManager
 }

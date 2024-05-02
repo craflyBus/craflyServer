@@ -5,6 +5,5 @@ import com.crafly.craflyserver.user.domain.auth.KakaoAuth
 
 data class UserAuth (
         val user: User,
-        val auth: Auth?,
-        val kakaoAuth: KakaoAuth?,
+        val auth: Auth,
 )

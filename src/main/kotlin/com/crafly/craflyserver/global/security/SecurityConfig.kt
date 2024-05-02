@@ -4,6 +4,7 @@ import com.crafly.craflyserver.global.security.filter.ExceptionHandlerFilter
 import com.crafly.craflyserver.global.security.filter.JwtAuthenticationFilter
 import com.crafly.craflyserver.global.security.provider.CookieProvider
 import com.crafly.craflyserver.global.security.provider.JwtTokenProvider
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.authentication.AuthenticationManager
@@ -23,7 +24,7 @@ class SecurityConfig(
     private val cookieProvider: CookieProvider,
 ) {
     @Bean
-    fun filterChain(http: HttpSecurity): SecurityFilterChain {
+    fun filterChain(http: HttpSecurity, @Value("\${login.path}") loginUrl: String): SecurityFilterChain {
         http.httpBasic { it.disable() }
         http.csrf { it.disable() }
         http.cors { it.disable() }
@@ -35,7 +36,7 @@ class SecurityConfig(
                 .anyRequest().authenticated()
         }
         .addFilterBefore(
-            JwtAuthenticationFilter(jwtTokenProvider, cookieProvider),
+            JwtAuthenticationFilter(jwtTokenProvider, cookieProvider, loginUrl),
             UsernamePasswordAuthenticationFilter::class.java
         )
         .addFilterBefore(

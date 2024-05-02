@@ -30,8 +30,7 @@ import java.util.stream.Collectors
 class JwtAuthenticationFilter (
     private val jwtTokenProvider: JwtTokenProvider,
     private val cookieProvider: CookieProvider,
-    @Value("\${login.path}")
-    private val loginUrl: String = ""
+    private val loginUrl: String
 ): UsernamePasswordAuthenticationFilter() {
     init {
         super.setFilterProcessesUrl(loginUrl)

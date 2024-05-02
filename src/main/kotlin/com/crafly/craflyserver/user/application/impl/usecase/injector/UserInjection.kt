@@ -1,6 +1,7 @@
 package com.crafly.craflyserver.user.application.impl.usecase.injector
 
 import com.crafly.craflyserver.global.annotation.Injector
+import com.crafly.craflyserver.global.model.exception.BackendException
 import com.crafly.craflyserver.user.application.port.`in`.parameter.user.register.RegisterAuthCommand
 import com.crafly.craflyserver.user.application.port.`in`.parameter.user.register.RegisterKakaoAuthCommand
 import com.crafly.craflyserver.user.application.port.`in`.parameter.user.register.RegisterUserCommand
@@ -8,6 +9,7 @@ import com.crafly.craflyserver.user.domain.User
 import com.crafly.craflyserver.user.domain.UserActivate
 import com.crafly.craflyserver.user.domain.auth.Auth
 import com.crafly.craflyserver.user.domain.auth.KakaoAuth
+import org.springframework.http.HttpStatus
 import java.time.LocalDateTime
 
 @Injector
@@ -26,16 +28,16 @@ class UserInjection {
                 withdrawTime = null,
         )
     }
-    fun injectionAuth(code: String, auth: RegisterAuthCommand?): Auth? {
-        if (auth == null) return null
+    fun injectionAuth(code: String, auth: RegisterAuthCommand?): Auth {
+        if (auth == null) throw BackendException(HttpStatus.BAD_REQUEST, "Auth is Null")
         return Auth(
                 code = code,
                 id = auth.id,
                 password = auth.password
         )
     }
-    fun injectionKakaoAuth(code: String, auth: RegisterKakaoAuthCommand?): KakaoAuth? {
-        if (auth == null) return null
+    fun injectionKakaoAuth(code: String, auth: RegisterKakaoAuthCommand?): KakaoAuth {
+        if (auth == null) throw BackendException(HttpStatus.BAD_REQUEST, "Auth is Null")
         return KakaoAuth(
                 code = code,
                 id = auth.id,

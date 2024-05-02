@@ -28,12 +28,12 @@ class UserInjection {
                 withdrawTime = null,
         )
     }
-    fun injectionAuth(code: String, auth: RegisterAuthCommand?): Auth {
+    fun injectionAuth(code: String, auth: RegisterAuthCommand, password: String?): Auth {
         if (auth == null) throw BackendException(HttpStatus.BAD_REQUEST, "Auth is Null")
         return Auth(
                 code = code,
                 id = auth.id,
-                password = auth.password
+                password = password ?: auth.password
         )
     }
     fun injectionKakaoAuth(code: String, auth: RegisterKakaoAuthCommand?): KakaoAuth {

@@ -22,13 +22,14 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 class SecurityConfig(
     private val jwtTokenProvider: JwtTokenProvider,
     private val cookieProvider: CookieProvider,
+    private val authenticationConfiguration: AuthenticationConfiguration,
 ) {
     @Bean
     fun filterChain(http: HttpSecurity, @Value("\${login.path}") loginUrl: String): SecurityFilterChain {
         http.httpBasic { it.disable() }
+        http.formLogin { it.disable() }
         http.csrf { it.disable() }
         http.cors { it.disable() }
-        http.logout { it.disable() }
         http.sessionManagement { it.sessionCreationPolicy(SessionCreationPolicy.STATELESS) }
         http.authorizeHttpRequests {
             it
@@ -36,7 +37,12 @@ class SecurityConfig(
                 .anyRequest().authenticated()
         }
         .addFilterBefore(
-            JwtAuthenticationFilter(jwtTokenProvider, cookieProvider, loginUrl),
+            JwtAuthenticationFilter(
+                jwtTokenProvider,
+                cookieProvider,
+                authenticationManager(authenticationConfiguration),
+                loginUrl
+            ),
             UsernamePasswordAuthenticationFilter::class.java
         )
         .addFilterBefore(

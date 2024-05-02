@@ -2,6 +2,5 @@ package com.crafly.craflyserver.user.application.port.`in`.parameter.user.regist
 
 data class RegisterFullUserCommand (
         val user: RegisterUserCommand,
-        val auth: RegisterAuthCommand?,
-        val kakaoAuth: RegisterKakaoAuthCommand?,
+        val auth: RegisterAuthCommand,
 )

@@ -23,7 +23,6 @@ class ManipulateUserUseCaseImpl (
         val fUser = UserAuth(
                 user = userInjection.injectionUser(code, user.user),
                 auth = userInjection.injectionAuth(code, user.auth),
-                kakaoAuth = userInjection.injectionKakaoAuth(code, user.kakaoAuth)
         )
         manipulateUserPort.registerUser(fUser)
     }

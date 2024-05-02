@@ -28,13 +28,7 @@ class UserPersistenceAdapter (
 ) : ManipulateUserPort, ReadUserPort {
     override fun registerUser(user: UserAuth) {
         userRepository.save(userMapper.toEntity(user.user))
-        if (user.auth != null) {
-            authRepository.save(authMapper.toEntity(user.auth))
-        } else if (user.kakaoAuth != null) {
-            kakaoAuthRepository.save(kakaoAuthMapper.toEntity(user.kakaoAuth))
-        } else {
-            throw BackendException(HttpStatus.BAD_REQUEST, "Not Include Auth")
-        }
+        authRepository.save(authMapper.toEntity(user.auth))
     }
 
     override fun updateUser(code: String, updateCommand: UpdateUserCommand) {

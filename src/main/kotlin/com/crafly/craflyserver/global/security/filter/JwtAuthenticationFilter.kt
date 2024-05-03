@@ -5,26 +5,19 @@ import com.crafly.craflyserver.global.model.exception.CustomAuthenticationExcept
 import com.crafly.craflyserver.global.model.exception.body.ExceptionResponse
 import com.crafly.craflyserver.global.security.provider.CookieProvider
 import com.crafly.craflyserver.global.security.provider.JwtTokenProvider
-import com.crafly.craflyserver.user.adapter.out.entity.UserForSecurityEntity
-import com.crafly.craflyserver.user.application.port.`in`.parameter.request.LoginRequest
+import com.crafly.craflyserver.global.security.UserForSecurity
+import com.crafly.craflyserver.user.application.port.`in`.parameter.login.LoginCommand
 import com.fasterxml.jackson.databind.ObjectMapper
 import jakarta.servlet.FilterChain
-import jakarta.servlet.ServletException
-import jakarta.servlet.ServletRequest
-import jakarta.servlet.ServletResponse
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
-import org.springframework.beans.factory.annotation.Value
-import org.springframework.context.annotation.Bean
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
 import org.springframework.security.core.Authentication
 import org.springframework.security.core.AuthenticationException
 import org.springframework.security.core.GrantedAuthority
-import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
 import java.io.IOException
 import java.util.*
@@ -49,7 +42,7 @@ class JwtAuthenticationFilter (
         val authentication: Authentication
 
         try {
-            val credential = objectMapper.readValue(request.reader, LoginRequest::class.java)
+            val credential = objectMapper.readValue(request.reader, LoginCommand::class.java)
 
             authentication = authenticationManager.authenticate(
                 UsernamePasswordAuthenticationToken(credential.id, credential.password)
@@ -69,7 +62,7 @@ class JwtAuthenticationFilter (
         chain: FilterChain?,
         authResult: Authentication?
     ) {
-        val user: UserForSecurityEntity = authResult!!.principal as UserForSecurityEntity
+        val user: UserForSecurity = authResult!!.principal as UserForSecurity
 
         val roles: List<String> =
             user

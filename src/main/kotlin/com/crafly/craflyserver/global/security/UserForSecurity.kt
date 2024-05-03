@@ -1,4 +1,4 @@
-package com.crafly.craflyserver.user.adapter.out.entity;
+package com.crafly.craflyserver.global.security;
 
 import com.crafly.craflyserver.user.domain.UserActivate
 import com.crafly.craflyserver.user.domain.UserType
@@ -6,18 +6,15 @@ import jakarta.persistence.Entity
 import jakarta.persistence.Id
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
-import org.springframework.security.crypto.password.PasswordEncoder
 import java.time.LocalDateTime
 
-@Entity
-data class UserForSecurityEntity(
-    @Id
-    val code: String,
-    val id: String,
-    val pw: String,
-    val type: UserType = UserType.U,
-    val activate: UserActivate = UserActivate.N,
-    val withdrawTime: LocalDateTime? = null,
+data class UserForSecurity(
+    private val code: String,
+    private val id: String,
+    private val password: String,
+    private val type: UserType = UserType.U,
+    private val activate: UserActivate = UserActivate.N,
+    private val withdrawTime: LocalDateTime? = null,
 ):UserDetails {
     override fun getAuthorities(): Collection<SimpleGrantedAuthority> {
         val authorities:Collection<SimpleGrantedAuthority> = ArrayList()
@@ -27,7 +24,7 @@ data class UserForSecurityEntity(
     }
 
     override fun getPassword(): String {
-        return pw
+        return password
     }
 
     override fun getUsername(): String {

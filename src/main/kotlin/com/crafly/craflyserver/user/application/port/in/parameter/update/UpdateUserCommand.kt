@@ -1,4 +1,4 @@
-package com.crafly.craflyserver.user.application.port.`in`.parameter.user.update
+package com.crafly.craflyserver.user.application.port.`in`.parameter.update
 
 data class UpdateUserCommand (
         val nickname: String,

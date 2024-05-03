@@ -1,9 +1,9 @@
 package com.crafly.craflyserver.user.adapter.`in`;
 
-import com.crafly.craflyserver.user.application.port.`in`.parameter.user.register.RegisterFullUserCommand
+import com.crafly.craflyserver.user.application.port.`in`.parameter.register.RegisterFullUserCommand
 import com.crafly.craflyserver.user.application.port.`in`.ManipulateUserUseCase
 import com.crafly.craflyserver.global.annotation.WebAdapter
-import com.crafly.craflyserver.user.application.port.`in`.parameter.user.update.UpdateUserCommand
+import com.crafly.craflyserver.user.application.port.`in`.parameter.update.UpdateUserCommand
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.web.bind.annotation.PatchMapping

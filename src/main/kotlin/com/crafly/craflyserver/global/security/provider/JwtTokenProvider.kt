@@ -1,22 +1,30 @@
 package com.crafly.craflyserver.global.security.provider
 
-import com.crafly.craflyserver.global.security.service.UserForSecurityService
+import com.crafly.craflyserver.global.security.token.TokenType
 import io.jsonwebtoken.Claims
+import io.jsonwebtoken.JwtBuilder
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm
+import io.jsonwebtoken.security.Keys
 import jakarta.servlet.http.HttpServletRequest
+import jakarta.xml.bind.DatatypeConverter
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.Authentication
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.stereotype.Component
+import java.nio.charset.StandardCharsets
+import java.security.Key
 import java.util.*
+import javax.crypto.SecretKey
 
 @Component
 class JwtTokenProvider(
     private val userForSecurityService: UserDetailsService,
-    @Value("\${jwt.secret-key")
-    private val secretKey: String,
+    @Value("\${jwt.access-secret-key")
+    private val accessSecret: String,
+    @Value("\${jwt.refresh-secret-key")
+    private val refreshSecret: String,
     @Value("\${jwt.access-expired-time}")
     private val accessExpiredTime: Long,
     @Value("\${jwt.refresh-expired-time}")
@@ -29,47 +37,37 @@ class JwtTokenProvider(
 
         val now = Date()
 
-        return Jwts.builder()
+        val build: JwtBuilder = Jwts.builder()
             .setHeaderParam("typ", "JWT")
             .setClaims(claims)
             .setIssuedAt(now)
             .setIssuer(uri)
             .setExpiration(Date(now.time + accessExpiredTime))
-            .signWith(SignatureAlgorithm.HS256, secretKey)
-            .compact()
+            .signWith(getSigningKey(TokenType.ACCESS_TOKEN), SignatureAlgorithm.HS256)
+
+        return build.compact()
     }
 
     fun generateRefreshToken(uuid: String?): String {
         val claims = Jwts.claims().setSubject(uuid)
-        return Jwts.builder()
+
+        val build: JwtBuilder = Jwts.builder()
             .addClaims(claims)
             .setExpiration(
-                Date(System.currentTimeMillis() + refreshExpiredTime) // (100일) 1시간
+                Date(System.currentTimeMillis() + refreshExpiredTime)
             )
             .setIssuedAt(Date())
-            .signWith(SignatureAlgorithm.HS256, secretKey)
-            .compact()
+            .signWith(getSigningKey(TokenType.REFRESH_TOKEN), SignatureAlgorithm.HS256)
+
+        return build.compact()
     }
 
-    fun getAuthentication(token: String): Authentication {
-        val userDetails = userForSecurityService.loadUserByUsername(getUserCode(token))
-        return UsernamePasswordAuthenticationToken(userDetails, "", userDetails.authorities)
-    }
-
-    fun getUserCode(token: String): String {
-        return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).body.subject
-    }
-
-    fun resolveToken(request: HttpServletRequest): String? {
-        return request.getHeader("Authorization")
-    }
-
-    fun validateToken(jwtToken: String): Boolean {
-        return try {
-            val claims = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(jwtToken)
-            !claims.body.expiration.before(Date())
-        } catch (e: Exception) {
-            false
-        }
+    private fun getSigningKey(type: TokenType): Key {
+        return Keys.hmacShaKeyFor(
+            when(type) {
+                TokenType.ACCESS_TOKEN -> accessSecret
+                TokenType.REFRESH_TOKEN -> refreshSecret
+            }.toByteArray(Charsets.UTF_8)
+        )
     }
 }

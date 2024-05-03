@@ -43,7 +43,8 @@ spring:
               - account_email
 
 jwt:
-  secret-key: ${key.jwt.secret-key}
+  access-secret-key: ${key.jwt.access-secret-key}
+  refresh-secret-key: ${key.jwt.refresh-secret-key}
   access-expired-time: ${key.jwt.access-expired-time}
   refresh-expired-time: ${key.jwt.refresh-expired-time}
 

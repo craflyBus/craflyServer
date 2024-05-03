@@ -1,8 +1,8 @@
 package com.crafly.craflyserver.user.application.impl.usecase;
 
-import com.crafly.craflyserver.user.application.port.`in`.parameter.user.register.RegisterFullUserCommand
+import com.crafly.craflyserver.user.application.port.`in`.parameter.register.RegisterFullUserCommand
 import com.crafly.craflyserver.user.application.port.`in`.ManipulateUserUseCase
-import com.crafly.craflyserver.user.application.port.`in`.parameter.user.update.UpdateUserCommand
+import com.crafly.craflyserver.user.application.port.`in`.parameter.update.UpdateUserCommand
 import com.crafly.craflyserver.user.application.port.out.ManipulateUserPort
 import com.crafly.craflyserver.user.domain.UserAuth
 import com.crafly.craflyserver.global.annotation.UseCase

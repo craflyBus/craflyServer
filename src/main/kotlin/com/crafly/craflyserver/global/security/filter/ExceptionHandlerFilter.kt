@@ -30,6 +30,7 @@ class ExceptionHandlerFilter : OncePerRequestFilter() {
         exception: BackendException
     ) {
         val objectMapper = ObjectMapper()
+        response.contentType = "application/json; charset=UTF-8"
         response.setStatus(exception.status.value())
         response.setContentType(MediaType.APPLICATION_JSON_VALUE)
         val errorResponse: ExceptionResponse = ExceptionResponse(

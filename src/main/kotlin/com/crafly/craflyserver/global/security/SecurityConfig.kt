@@ -42,7 +42,7 @@ class SecurityConfig(
             JwtAuthenticationFilter(
                 jwtTokenProvider,
                 cookieProvider,
-                authenticationManager(authenticationConfiguration),
+                authenticationManager(),
                 objectMapper,
                 loginUrl
             ),
@@ -56,9 +56,9 @@ class SecurityConfig(
     }
 
     @Bean
-    fun passwordEncoder(): PasswordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder()
+    fun authenticationManager(): AuthenticationManager =
+        authenticationConfiguration.authenticationManager
 
     @Bean
-    fun authenticationManager(config: AuthenticationConfiguration): AuthenticationManager =
-        config.authenticationManager
+    fun passwordEncoder(): PasswordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder()
 }

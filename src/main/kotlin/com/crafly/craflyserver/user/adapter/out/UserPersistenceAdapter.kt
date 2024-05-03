@@ -13,7 +13,7 @@ import com.crafly.craflyserver.user.domain.User
 import com.crafly.craflyserver.user.domain.UserAuth
 import com.crafly.craflyserver.global.annotation.PersistenceAdapter
 import com.crafly.craflyserver.global.model.exception.BackendException
-import com.crafly.craflyserver.user.application.port.`in`.parameter.user.update.UpdateUserCommand
+import com.crafly.craflyserver.user.application.port.`in`.parameter.update.UpdateUserCommand
 import org.springframework.http.HttpStatus
 
 @PersistenceAdapter

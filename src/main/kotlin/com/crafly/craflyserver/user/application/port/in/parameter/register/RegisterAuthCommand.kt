@@ -1,4 +1,4 @@
-package com.crafly.craflyserver.user.application.port.`in`.parameter.user.register
+package com.crafly.craflyserver.user.application.port.`in`.parameter.register
 
 data class RegisterAuthCommand(
         val id: String,

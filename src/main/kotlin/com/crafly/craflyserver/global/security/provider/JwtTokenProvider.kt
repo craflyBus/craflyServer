@@ -9,7 +9,6 @@ import io.jsonwebtoken.security.Keys
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.xml.bind.DatatypeConverter
 import org.springframework.beans.factory.annotation.Value
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.Authentication
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.stereotype.Component
@@ -67,7 +66,7 @@ class JwtTokenProvider(
             when(type) {
                 TokenType.ACCESS_TOKEN -> accessSecret
                 TokenType.REFRESH_TOKEN -> refreshSecret
-            }.toByteArray(Charsets.UTF_8)
+            }.toByteArray(Charsets.UTF_16)
         )
     }
 }

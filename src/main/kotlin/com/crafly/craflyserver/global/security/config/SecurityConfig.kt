@@ -1,4 +1,4 @@
-package com.crafly.craflyserver.global.security;
+package com.crafly.craflyserver.global.security.config;
 
 import com.crafly.craflyserver.global.security.filter.ExceptionHandlerFilter
 import com.crafly.craflyserver.global.security.filter.AuthAuthenticationFilter
@@ -31,7 +31,7 @@ class SecurityConfig(
         http.httpBasic { it.disable() }
         http.formLogin { it.disable() }
         http.csrf { it.disable() }
-        http.cors { it.disable() }
+        http.cors {  }
         http.sessionManagement { it.sessionCreationPolicy(SessionCreationPolicy.STATELESS) }
         http.authorizeHttpRequests {
             it

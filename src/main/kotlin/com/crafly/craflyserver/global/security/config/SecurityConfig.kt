@@ -1,7 +1,7 @@
-package com.crafly.craflyserver.global.security;
+package com.crafly.craflyserver.global.security.config;
 
 import com.crafly.craflyserver.global.security.filter.ExceptionHandlerFilter
-import com.crafly.craflyserver.global.security.filter.JwtAuthenticationFilter
+import com.crafly.craflyserver.global.security.filter.AuthAuthenticationFilter
 import com.crafly.craflyserver.global.security.provider.CookieProvider
 import com.crafly.craflyserver.global.security.provider.JwtTokenProvider
 import com.fasterxml.jackson.databind.ObjectMapper
@@ -31,7 +31,7 @@ class SecurityConfig(
         http.httpBasic { it.disable() }
         http.formLogin { it.disable() }
         http.csrf { it.disable() }
-        http.cors { it.disable() }
+        http.cors {  }
         http.sessionManagement { it.sessionCreationPolicy(SessionCreationPolicy.STATELESS) }
         http.authorizeHttpRequests {
             it
@@ -39,7 +39,7 @@ class SecurityConfig(
                 .anyRequest().authenticated()
         }
         .addFilterBefore(
-            JwtAuthenticationFilter(
+            AuthAuthenticationFilter(
                 jwtTokenProvider,
                 cookieProvider,
                 authenticationManager(),
@@ -50,7 +50,7 @@ class SecurityConfig(
         )
         .addFilterBefore(
             ExceptionHandlerFilter(),
-            JwtAuthenticationFilter::class.java
+            AuthAuthenticationFilter::class.java
         )
         return http.build()
     }

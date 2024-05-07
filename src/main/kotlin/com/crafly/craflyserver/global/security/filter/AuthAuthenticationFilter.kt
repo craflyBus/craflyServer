@@ -23,7 +23,7 @@ import java.io.IOException
 import java.util.*
 import java.util.stream.Collectors
 
-class JwtAuthenticationFilter (
+class AuthAuthenticationFilter (
     private val jwtTokenProvider: JwtTokenProvider,
     private val cookieProvider: CookieProvider,
     private val authenticationManager: AuthenticationManager,

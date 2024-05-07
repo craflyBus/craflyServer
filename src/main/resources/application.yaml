@@ -51,6 +51,9 @@ jwt:
 login:
   path: /v1/user/login
 
+front-end:
+  url: ${key.front-end.url}
+
 springdoc:
   paths-to-match:
     - /v1/**

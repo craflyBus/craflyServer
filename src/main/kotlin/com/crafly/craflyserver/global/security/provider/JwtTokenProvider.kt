@@ -19,7 +19,6 @@ import javax.crypto.SecretKey
 
 @Component
 class JwtTokenProvider(
-    private val userForSecurityService: UserDetailsService,
     @Value("\${jwt.access-secret-key")
     private val accessSecret: String,
     @Value("\${jwt.refresh-secret-key")

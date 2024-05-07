@@ -13,12 +13,12 @@ interface UserRepository : JpaRepository<UserEntity, String> {
             "FROM UserEntity U " +
             "INNER JOIN AuthEntity A ON A.code = U.code " +
             "WHERE A.id = :id")
-    fun findByAuthId(@Param("id") id: String) : UserEntity
+    fun findByAuthId(@Param("id") id: String) : UserEntity?
 
     @Query("SELECT U.nickname, U.telephone, U.postCode, " +
             "U.address, U.addressDetail, U.type " +
             "FROM UserEntity U " +
             "INNER JOIN KakaoAuthEntity A ON A.code = U.code " +
             "WHERE A.id = :id")
-    fun findByKakaoAuthId(id: String) : UserEntity
+    fun findByKakaoAuthId(id: String) : UserEntity?
 }

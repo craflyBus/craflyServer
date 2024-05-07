@@ -2,5 +2,5 @@ package com.crafly.craflyserver.user.domain.auth;
 
 data class KakaoAuth (
         val code: String,
-        val id: String,
+        val kakaoCode: String,
 )

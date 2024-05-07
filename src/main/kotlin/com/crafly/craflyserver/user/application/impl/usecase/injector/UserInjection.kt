@@ -40,7 +40,7 @@ class UserInjection {
         if (auth == null) throw BackendException(HttpStatus.BAD_REQUEST, "Auth is Null")
         return KakaoAuth(
                 code = code,
-                id = auth.id,
+                kakaoCode = auth.kakaoCode,
         )
     }
 }

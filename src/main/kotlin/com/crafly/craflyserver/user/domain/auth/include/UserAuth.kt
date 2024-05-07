@@ -1,7 +1,7 @@
-package com.crafly.craflyserver.user.domain;
+package com.crafly.craflyserver.user.domain.auth.include;
 
+import com.crafly.craflyserver.user.domain.User
 import com.crafly.craflyserver.user.domain.auth.Auth
-import com.crafly.craflyserver.user.domain.auth.KakaoAuth
 
 data class UserAuth (
         val user: User,

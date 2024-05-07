@@ -10,11 +10,11 @@ import jakarta.persistence.Table
 data class KakaoAuthEntity (
     @Id
     val code: String,
-    val id: String
+    val kakaoCode: String
 ) {
 
     fun mapToKakaoAuth() = KakaoAuth(
         code = code,
-        id = id,
+        kakaoCode = kakaoCode,
     )
 }

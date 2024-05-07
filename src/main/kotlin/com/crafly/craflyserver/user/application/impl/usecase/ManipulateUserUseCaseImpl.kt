@@ -4,11 +4,10 @@ import com.crafly.craflyserver.user.application.port.`in`.parameter.register.Reg
 import com.crafly.craflyserver.user.application.port.`in`.ManipulateUserUseCase
 import com.crafly.craflyserver.user.application.port.`in`.parameter.update.UpdateUserCommand
 import com.crafly.craflyserver.user.application.port.out.ManipulateUserPort
-import com.crafly.craflyserver.user.domain.UserAuth
+import com.crafly.craflyserver.user.domain.auth.include.UserAuth
 import com.crafly.craflyserver.global.annotation.UseCase
 import com.crafly.craflyserver.global.util.GeneratorCode
 import com.crafly.craflyserver.user.application.impl.usecase.injector.UserInjection
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.transaction.annotation.Transactional
 

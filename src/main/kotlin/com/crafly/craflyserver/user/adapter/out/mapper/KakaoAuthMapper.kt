@@ -9,14 +9,14 @@ class KakaoAuthMapper {
     fun toDomain(auth: KakaoAuthEntity): KakaoAuth {
         return KakaoAuth(
             auth.code,
-            auth.id
+            auth.kakaoCode
         )
     }
 
     fun toEntity(auth: KakaoAuth): KakaoAuthEntity {
         return KakaoAuthEntity(
             auth.code,
-            auth.id
+            auth.kakaoCode
         )
     }
 }

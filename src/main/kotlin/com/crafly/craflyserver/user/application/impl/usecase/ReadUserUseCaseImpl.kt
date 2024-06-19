@@ -15,4 +15,8 @@ internal class ReadUserUseCaseImpl (
     override fun getUser(code: String): User {
         return readUserPort.readUserByCode(code)
     }
+
+    override fun getCode(id: String): String {
+        return readUserPort.readCodeById(id)
+    }
 }

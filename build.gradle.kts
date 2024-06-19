@@ -21,6 +21,7 @@ repositories {
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-security")
+    implementation("org.springframework.boot:spring-boot-starter-actuator")
     compileOnly("org.springframework.security:spring-security-oauth2-client")
     compileOnly("org.springframework.security:spring-security-oauth2-jose")
     implementation("io.jsonwebtoken:jjwt-api:0.11.5")

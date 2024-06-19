@@ -24,4 +24,12 @@ class ReadUserController(
             HttpStatus.OK,
             readUserQuery.getUser(code)
         )
+
+    @Operation(summary = "일반 사용자의 code 가져오기")
+    @GetMapping("/get/auth/{id}")
+    fun getCode(@PathVariable id: String) =
+        packer.packing(
+            HttpStatus.OK,
+            readUserQuery.getCode(id)
+        )
 }

@@ -50,4 +50,11 @@ class UserPersistenceAdapter (
 
         return userMapper.toDomain(user)
     }
+
+    override fun readCodeById(id: String): String {
+        val user: UserEntity = userRepository.findByAuthId(id)
+            ?: throw BackendException(HttpStatus.NOT_FOUND, "User Not Found")
+
+        return user.code
+    }
 }

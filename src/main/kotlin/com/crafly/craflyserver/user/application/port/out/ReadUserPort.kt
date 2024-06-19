@@ -4,4 +4,5 @@ import com.crafly.craflyserver.user.domain.User
 
 interface ReadUserPort {
     fun readUserByCode(code: String): User
+    fun readCodeById(id: String): String
 }

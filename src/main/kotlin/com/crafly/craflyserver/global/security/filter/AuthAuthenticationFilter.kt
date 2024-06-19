@@ -44,7 +44,7 @@ class AuthAuthenticationFilter (
         try {
             val credential = objectMapper.readValue(request.reader, LoginCommand::class.java)
 
-            authentication = authenticationManager.authenticate(
+                authentication = authenticationManager.authenticate(
                 UsernamePasswordAuthenticationToken(credential.id, credential.password)
             )
 

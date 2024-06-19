@@ -8,8 +8,7 @@ import org.springframework.stereotype.Repository
 
 interface UserRepository : JpaRepository<UserEntity, String> {
     fun findByCode(code: String) : UserEntity?
-    @Query("SELECT U.nickname, U.telephone, U.postCode, " +
-            "U.address, U.addressDetail, U.type " +
+    @Query("SELECT U " +
             "FROM UserEntity U " +
             "INNER JOIN AuthEntity A ON A.code = U.code " +
             "WHERE A.id = :id")
